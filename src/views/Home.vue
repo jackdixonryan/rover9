@@ -1,12 +1,17 @@
 <template>
   <div>
+    <Shop />
   </div>
 </template>
 
 <script>
 import firebase from "firebase";
+import Shop from '../components/Shop';
 
 export default {
+  components: {
+    Shop,
+  },
   data() {
     return {
       userDetails: null,
