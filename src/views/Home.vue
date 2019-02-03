@@ -1,6 +1,10 @@
 <template>
-  <div>
+  <div v-if="userDetails">
     <Shop />
+    <div v-if="newUser">
+      <h1>Welcome, new user!</h1>
+      <p>The first step of any successful space mission is to purchase a vessel. Click the Menu button at the top of the page to browse the selection of ships. </p>
+    </div>
   </div>
 </template>
 
@@ -20,6 +24,13 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    newUser() {
+      if (this.userDetails) {
+        if (Object.entries(this.userDetails.inventory).length === 0) {
+          return true;
+        } else return false;
+      } else return null;
     }
   },
   watch: {

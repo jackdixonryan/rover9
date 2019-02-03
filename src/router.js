@@ -2,9 +2,11 @@
 
 import Vue from 'vue';
 import Router from 'vue-router';
+
 import Login from './views/Login';
 import Signup from './views/Signup';
 import Home from './views/Home';
+import Mini from './views/Mini';
 
 Vue.use(Router);
 
@@ -25,6 +27,11 @@ export default new Router({
       path: '/home',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/mini',
+      name: 'Minigame',
+      component: Mini
     }
   ]
 });
