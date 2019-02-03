@@ -1,11 +1,14 @@
 <template>
   <div id="mission-control">
-    <div id="screen">
-      <h3>Rover 9 Mission Control</h3>
+      <h2>ROVER 9 MISSION CONTROL</h2>
       <div id="bar">
         <div id="health" :style="{ width: `${player.capsule.health}%`}"></div>
       </div>
-      <h2>HEALTH: {{player.capsule.health}}%</h2>
+      <div id="graph">
+        <div class="tick" id="first"></div>
+        <div v-for="point in graph" class="tick" :key="point"></div>
+      </div>
+      <h2>HULL INTEGRITY: {{player.capsule.health}}%</h2>
       <button class="btn" @click="launchCapsule">LAUNCH!</button>
       <button class="btn" @click="doRepair">REPAIR!</button>
       <h2>LOG:</h2>
@@ -14,7 +17,6 @@
           <p>{{notifications.length - index }}: {{ notification }}</p>
         </div>
       </div>
-    </div>
     <!-- idea here is to create a scaled test env where everything happens instantaneously and locally for development testing and later deployment to a larger stage.  -->
   </div>
 </template>
@@ -47,6 +49,9 @@ export default {
         "armor", 
         "reflective lens",
         "flexible alloys"
+      ],
+      graph: [
+        1, 2, 3, 4, 5, 6, 7, 8, 9
       ]
     }
   },
@@ -132,7 +137,7 @@ export default {
         // alert the player and set the repair bool to false.
         this.notifications.unshift('Repairs concluded! Ready to launch.');
 
-        new Notification("ROVER 9:", {
+        const repairs = new Notification("ROVER 9:", {
           body: "Repairs are concluded! Prepare to launch!"
         });
         repairs.addEventListener('click', (e) => {
@@ -186,58 +191,67 @@ export default {
 </script>
 
 <style>
-  #mission-control {
-    width: 80%;
-    margin: 0 auto;
-    background-color: brown;
-    height: 35em;
-    padding: 1em;
-    border-radius: 5%;
-    margin-top: 10em;
-    border: 1px black solid;
+  body {
+    background-color: black;
   }
 
-  #screen {
-    background-color: black;
-    border-radius: 5%;
-    width: 90%;
-    margin: 0 auto;
-    height: 100%;
+  #mission-control {
+    width: 100;
+    background: #000428;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(#004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(#004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    height: 100vh;
     padding: 1em;
-    color: white;
+    color: white; 
     text-align: center;
+    font-family: "Raleway", sans-serif;
+    border: 5px lightgray solid;
+    margin: 1em;
   }
 
   #bar {
-    height: 5em;
+    height: .5em;
     width: 90%;
     margin: 0 auto;
-    border: 1px black solid;
     margin-top: 1em;
     margin-bottom: 1em;
   }
 
   #health {
-    background-color: blue;
-    border: 1px black solid;
-    height: 5em;
+    background-color: #4286f4;
+    height: .5em;
   }
 
   .btn {
     height: 2em;
     width: 40%;
     margin: 2em;
-    border: 1px blue solid;
     color: white;
-    border-radius: 5%;
   }
 
   #log {
     overflow: scroll;
-    height: 14em;
+    height: 34em;
     width: 100%;
-    border: 1px white solid;
-    border-radius: 5%;
     text-align: left;
+  }
+
+  #graph {
+    width: 90%;
+    margin: 0 auto;
+    border-bottom: 1px white solid;
+    margin-bottom: 2em;
+  }
+
+  .tick {
+    height: .3em;
+    display: inline-block;
+    border-right: 1px white solid;
+    width: 10%;
+  }
+
+  #first {
+    border-left: 1px white solid;
   }
 </style>
