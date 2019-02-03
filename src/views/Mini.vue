@@ -83,11 +83,19 @@ export default {
               // tell the user what they ought to know. 
               this.notifications.unshift(`The probe sent one last transmission! We have discovered that the area has ${discovery}!`);
 
+              new Notification("ROVER 9:", {
+                body: 'Rover 9 was destroyed but it has something to report!'
+              });
+
               // add the discovery to the player's known places. 
               this.player.factorsKnown.push(discovery);
 
             } else {
               this.notifications.unshift("The probe was too damaged to send any data.");
+
+              new Notification("ROVER 9:", {
+                body: "Rover 9 has been destroyed!"
+              });
             }
           }
 
@@ -101,6 +109,11 @@ export default {
       // if mission has achieved success.
       } else {
         this.notifications.unshift("We made it sir! We've reached our destination!");
+
+        new Notification('ROVER 9:', {
+          body: "Mission Success!"
+        });
+        
         this.cycle = 0;
       }
     },
@@ -114,6 +127,11 @@ export default {
 
         // alert the player and set the repair bool to false.
         this.notifications.unshift('Repairs concluded! Ready to launch.');
+
+        new Notification("ROVER 9:", {
+          body: "Repairs are concluded! Prepare to launch!"
+        });
+
         this.player.capsule.underRepair = false;
 
       // case 2: the module is nearly repaired.
@@ -126,6 +144,11 @@ export default {
 
         // alert the player that repairs are done and set the repair bool to false. 
         this.notifications.unshift('Repairs concluded! Ready to launch.');
+
+        new Notification("ROVER 9:", {
+          body: "Repairs are concluded! Prepare to launch!"
+        });
+
         this.player.capsule.underRepair = false;
 
       // barring the capsule being repaired or nearly repaired...
@@ -142,6 +165,12 @@ export default {
         }, 2000);
       }
     }
+  },
+  mounted() {
+    Notification.requestPermission()
+    new Notification("ROVER 9", {
+      body: "You have permitted Rover 9 to send you notifications. Excelsior!"
+    });
   }
 }
 </script>
