@@ -6,7 +6,7 @@
     </div>
 
     <button @click="launchCapsule">LAUNCH!</button>
-    <button @click="repairCapsule">REPAIR!</button>
+    <button @click="doRepair">REPAIR!</button>
   </div>
 </template>
 
@@ -39,6 +39,7 @@ export default {
     }
   },
   methods: {
+    // this could be way cooler. Use the repairs logic to set some timers, create some progress clocks maybe, and figure out a new way to evaluate mission success/failure. Maybe generate probs per block of code instead of bulk for entire mission, or have mods affect damage taken.
     launchCapsule() {
       if (this.player.capsule.health === 0 || this.player.capsule.underRepair) {
         alert('You have to repair your capsule before another launch.')
@@ -63,28 +64,40 @@ export default {
         }
       }
     },
-    // instead of a while loop, these need to be recursive functions. 
-    repairCapsule() {
-      if (this.player.capsule.health === 100) {
-        alert('We are ready to launch.');
-      } else {
-        this.doRepair();
-      }
-    },
+    // recursive function for doing repairs on a capsule.
     doRepair() {
+      // tells the program that the capsule cannot be launched as it is currently being repaired.
       this.player.capsule.underRepair = true;
+
+      // if the capsule is fully repaired...
       if (this.player.capsule.health === 100) {
+
+        // alert the player and set the repair bool to false.
         alert('Repairs concluded! Ready to launch.');
         this.player.capsule.underRepair = false;
+
+      // case 2: the module is nearly repaired.
       } else if (this.player.capsule.health > 95) {
+        // indicate that the repair is in progress.
         console.log('repair noises...');
+
+        // auto-set capsule to 100% health to prevent from having incomplete repairs. 
         this.player.capsule.health = 100;
+
+        // alert the player that repairs are done and set the repair bool to false. 
         alert('Repairs concluded! Ready to launch.');
         this.player.capsule.underRepair = false;
+
+      // barring the capsule being repaired or nearly repaired...
       } else {
+        // indicate that repairs are occurring.
         console.log('repair noises...');
+        // increment the capsule's health by 5%;
         this.player.capsule.health +=5;
+
+        // here's the meat: Set the 2 second timeout. This is a game, so the repairs have to take time, they can't happen immediately. 
         setTimeout(() => {
+          // and recursively call this method, which will exit once the capsule is fully repaired. 
           this.doRepair();
         }, 2000);
       }
