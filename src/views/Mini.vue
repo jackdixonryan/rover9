@@ -93,8 +93,12 @@ export default {
             } else {
               this.notifications.unshift("The probe was too damaged to send any data.");
 
-              new Notification("ROVER 9:", {
-                body: "Rover 9 has been destroyed!"
+              const destroyedN = new Notification("ROVER 9 has been destroyed!", {
+                body: "Click here to repair!"
+              });
+
+              destroyedN.addEventListener('click', (e) => {
+                this.doRepair();
               });
             }
           }
@@ -113,7 +117,7 @@ export default {
         new Notification('ROVER 9:', {
           body: "Mission Success!"
         });
-        
+
         this.cycle = 0;
       }
     },
@@ -131,6 +135,9 @@ export default {
         new Notification("ROVER 9:", {
           body: "Repairs are concluded! Prepare to launch!"
         });
+        repairs.addEventListener('click', (e) => {
+          this.launchCapsule();
+        });
 
         this.player.capsule.underRepair = false;
 
@@ -145,8 +152,11 @@ export default {
         // alert the player that repairs are done and set the repair bool to false. 
         this.notifications.unshift('Repairs concluded! Ready to launch.');
 
-        new Notification("ROVER 9:", {
-          body: "Repairs are concluded! Prepare to launch!"
+        const repairs = new Notification("ROVER 9:", {
+          body: "Repairs are concluded! Click to launch!"
+        });
+        repairs.addEventListener('click', (e) => {
+          this.launchCapsule();
         });
 
         this.player.capsule.underRepair = false;
