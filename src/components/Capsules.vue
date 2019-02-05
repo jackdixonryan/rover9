@@ -99,6 +99,7 @@ export default {
   .flex {
     flex: 1;
     text-align: center;
+    margin-top: 1em;
   }
 
   .progress {

@@ -1,10 +1,18 @@
 <template>
-  <div v-if="userDetails">
-    <div v-if="newUser">
-      <h1>Welcome, new user!</h1>
-      <p>The first step of any successful space mission is to purchase a vessel. Click the Menu button at the top of the page to browse the selection of ships. </p>
+  <div v-if="userDetails" id="splash">
+    <div v-if="newUser" id="new-user">
+      <div id="header">
+        <h3 v-if="userDetails.username" class="flex-main-info">{{ userDetails.username }}</h3>
+        <input v-else type="text" placeholder="Set your Username" id="username-update" class="flex-main-info" />
+        <h3 class="flex-main-info">$ {{ userDetails.funding }}</h3>
+        <h3 class="flex-main-info">0 Active Missions</h3>
+      </div>
+      <div id="tutorial-information">
+        <p>Welcome to Mission Control. From this page, you will be able to view your mission stats, ship conditions, and much more. For now, start by purchasing your first probe.</p>
+        <p>Probes come at different prices, so take care which ones you buy. Remember, probes can be modified in the future and you'll want to save some of your money to purchase useful upgrades as you explore.</p>
+      </div>
+      <Capsules id="capsules-buyer"/>
     </div>
-    <Capsules />
   </div>
 </template>
 
@@ -47,10 +55,75 @@ export default {
           console.log(error);
         });
     }
+  },
+  methods: {
+    updateUsername(e) { 
+      console.log(e.keyCode);
+    }
+  },
+  mounted() {
+    const input = document.getElementById('username-update');
+    if (input) {
+      input.addEventListener('change', (e) => {
+        this.updateUsername(e);
+      });
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
+
+  #splash {
+    background-color: black;
+  }
+
+  #new-user {
+    font-family: 'Raleway', sans-serif;
+    display: grid;
+    grid-template-areas: "banner banner"
+      "maintext capsules";
+    grid-gap: 10px;
+    padding: 10px;
+  }
+
+  #header {
+    background: #000428;
+    background: -webkit-linear-gradient(#004e92, #000428); 
+    background: linear-gradient(#004e92, #000428);
+    padding: 1em;
+    border: 3px #E6E6FA	solid;
+    border-top: 10px #E6E6FA solid;
+    color: white;
+    grid-area: banner;
+    display: flex;
+  }
+
+  .flex-main-info {
+    flex: 1;
+    text-align: center;
+  }
+
+  #tutorial-information {
+    grid-area: maintext;
+    background: #000428;
+    background: -webkit-linear-gradient(#004e92, #000428); 
+    background: linear-gradient(#004e92, #000428);
+    padding: 1em;
+    border: 3px #E6E6FA solid;
+    border-top: 10px #E6E6FA solid;
+    color: white;
+  }
+
+  #capsules-buyer {
+    grid-area: capsules;
+    background: #000428;
+    background: -webkit-linear-gradient(#004e92, #000428); 
+    background: linear-gradient(#004e92, #000428);
+    padding: 1em;
+    border: 3px #E6E6FA	solid;
+    border-top: 10px #E6E6FA solid;
+    color: white;
+  }
 
 </style>
