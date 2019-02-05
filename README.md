@@ -1,6 +1,8 @@
 # rover9
 Space Simulation Game for PWA development. 
 
+![demo picture](https://raw.githubusercontent.com/jackdixonryan/rover9/master/src/assets/readmeImg.png)
+
 I want to have a little fun and see if I can actually build a reasonably good click-and-wait game. Basically, for now, the idea is pretty simple: You are a the director of NASA and it's your responsibility to explore the vast reaches of space! for the first version, it's going to be pretty simple: 
 
 The environment has 3 randomly selected unknowns--eg, intense solar radiation, asteroids, massive distance, and only by launching probes with the appropriate additions can you figure out what they are. So, say, a probe with solar reflectors might withstand the solar radiation, but get pounded with asteroids. 
