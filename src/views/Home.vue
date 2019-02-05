@@ -3,7 +3,7 @@
     <div v-if="newUser" id="new-user">
       <div id="header">
         <h3 v-if="userDetails.username" class="flex-main-info">{{ userDetails.username }}</h3>
-        <input v-else type="text" placeholder="Set your Username" id="username-update" class="flex-main-info" />
+        <input v-else type="text" placeholder="Set your Username" id="username-update" class="flex-main-info" @keyup.enter="updateUsername" v-model="username" />
         <h3 class="flex-main-info">$ {{ userDetails.funding }}</h3>
         <h3 class="flex-main-info">0 Active Missions</h3>
       </div>
@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       userDetails: null,
+      username: '',
     }
   },  
   computed: {
@@ -57,16 +58,18 @@ export default {
     }
   },
   methods: {
-    updateUsername(e) { 
-      console.log(e.keyCode);
-    }
-  },
-  mounted() {
-    const input = document.getElementById('username-update');
-    if (input) {
-      input.addEventListener('change', (e) => {
-        this.updateUsername(e);
-      });
+    updateUsername() { 
+      // set local
+      this.$set(this.userDetails, 'username', this.username);
+      
+      // set data.
+      firebase.firestore()
+        .collection('users')
+        .doc(this.user.uid)
+        .update({
+          username: this.username
+        })
+        .catch(error => console.log(error));
     }
   }
 }
