@@ -2,12 +2,26 @@
   <div id="background">
     <div id="main">
       <div id="probe-stats">
-        ARES III
-        12.4.25.6
+        <div id="banner" style="width: 100%; border-bottom: 1px #87CEFA solid;">
+          <p style="color: #87CEFA; font-size: 12px; margin: 5px;">02/05/2019</p>
+        </div>
+        <div id="title">
+          <h3>ARES III</h3>
+          <h4>Mission Status</h4>
+        </div>
         <div id="bars">
-          <progress-circle color="#ffffff" :progress=".47" height="60" width="60" class="circle"/>
-          <progress-circle color="#ffffff" :progress=".76" height="60" width="60" class="circle"></progress-circle>
-          <progress-circle color="#ffffff" :progress=".25" height="60" width="60" class="circle"/>
+          <div class="circle">
+            <progress-circle color="#ffffff" :progress=".47" height="100" width="100" name="health" class="bar"/>
+            <p class="bar-label">Hull Integrity</p>
+          </div>
+          <div class="circle">
+            <progress-circle color="#ffffff" :progress=".75" height="100" width="100" name="discChance" class="bar"/>
+            <p class="bar-label">Discovery Chance</p>
+          </div>
+          <div class="circle">
+            <progress-circle color="#ffffff" :progress=".25" height="100" width="100" name="success" class="bar"/>
+            <p class="bar-label">Success Chance</p>
+          </div>
         </div>
       </div>
     </div>
@@ -53,13 +67,42 @@ export default {
     background: linear-gradient(#004e92, #000428);
     height: 100%;
     padding: 1em;
+    display: grid;
+    grid-template-areas: "banner banner banner banner"
+      "title bars bars bars";
+    grid-row-gap: 1em;
+  }
+
+  #title {
+    display: inline;
+    font-weight: 800;
+    letter-spacing: 2px;
   }
 
   #bars {
     display: flex;
+    padding: 1em;
+    grid-area: bars;
   }
 
   .circle {
     flex: 1;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .bar {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .bar-label {
+    margin-top: .75em;
+    color: #87CEFA;
+  }
+
+  #banner {
+    grid-area: banner;
+    padding: 0px;
   }
 </style>
