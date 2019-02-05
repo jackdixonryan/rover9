@@ -2,6 +2,7 @@
 Space Simulation Game for PWA development. 
 
 ![demo picture](https://raw.githubusercontent.com/jackdixonryan/rover9/master/src/assets/readmeImg.png)
+###### UX inspired by The Martian's mission control interfaces.
 
 I want to have a little fun and see if I can actually build a reasonably good click-and-wait game. Basically, for now, the idea is pretty simple: You are a the director of NASA and it's your responsibility to explore the vast reaches of space! for the first version, it's going to be pretty simple: 
 
@@ -15,6 +16,9 @@ As the game is developed, users will be able to research more, run manned missio
 - return data
 - relaunch
 - until area is explored! 
+
+![capsule in-game menu](https://raw.githubusercontent.com/jackdixonryan/rover9/master/src/assets/capsuleMenu.png)
+###### In-game Capsule Purchase Menu
 
 # Technology Required 
 

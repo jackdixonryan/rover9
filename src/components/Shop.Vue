@@ -1,14 +1,6 @@
 <template>
-  <div>
-    <button color="success" @click="menu ? menu = false : menu = true">Open Menu</button>
-    <div v-if="probes.length > 0 && menu">
-      <div class="list-item" v-for="probe in probes" :key="probe.name">
-        <h3>{{ probe.name }}</h3>
-        <p>{{ probe.description }}</p>
-        <h5>DISCOVERY: {{ probe.discoveryProbability }}</h5>
-        <h5>SUCCESS: {{ probe.successProbability }} </h5>
-      </div>
-    </div>
+  <div id="probes-menu">
+    
   </div>
 </template>
 

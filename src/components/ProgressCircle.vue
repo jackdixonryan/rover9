@@ -25,7 +25,7 @@ export default {
       strokeWidth: 8,
     });
 
-    progressCircle.setText(`${this.progress}%`)
+    progressCircle.setText(`${this.progress * 100}%`)
     progressCircle.animate(this.progress);
   }
 }
