@@ -1,23 +1,32 @@
 <template>
+  <div id="main">
   <div id="mission-control">
-      <h2>ROVER 9 MISSION CONTROL</h2>
-      <div id="bar">
-        <div id="health" :style="{ width: `${player.capsule.health}%`}"></div>
+      <div class="information-area" id="bar-area">
+        <div id="bar">
+          <div id="health" :style="{ width: `${player.capsule.health}%`}"></div>
+        </div>
+
+        <div id="graph">
+          <div class="tick" id="first"></div>
+          <div v-for="point in graph" class="tick" :key="point"></div>
+        </div>
+
+        <h2>HULL INTEGRITY: {{player.capsule.health}}%</h2>
       </div>
-      <div id="graph">
-        <div class="tick" id="first"></div>
-        <div v-for="point in graph" class="tick" :key="point"></div>
+
+      <div class="information-area" id="command">
+        <button class="btn" @click="launchCapsule">LAUNCH!</button>
+        <button class="btn" @click="doRepair">REPAIR!</button>
       </div>
-      <h2>HULL INTEGRITY: {{player.capsule.health}}%</h2>
-      <button class="btn" @click="launchCapsule">LAUNCH!</button>
-      <button class="btn" @click="doRepair">REPAIR!</button>
-      <h2>LOG:</h2>
-      <div id="log">
+
+      <div id="log" class="information-area">
+        <h2>LOG</h2>
         <div class="notification" v-for="(notification, index) in notifications" :key="index">
           <p>{{notifications.length - index }}: {{ notification }}</p>
         </div>
       </div>
     <!-- idea here is to create a scaled test env where everything happens instantaneously and locally for development testing and later deployment to a larger stage.  -->
+  </div>
   </div>
 </template>
 
@@ -190,24 +199,24 @@ export default {
 }
 </script>
 
-<style>
-  body {
+<style scoped>
+  #main {
     background-color: black;
+    padding: 0px;
+    margin: 0px;
+    height: 100vh;
   }
 
   #mission-control {
-    width: 100;
-    background: #000428;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(#004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(#004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
     height: 100vh;
     padding: 1em;
     color: white; 
     text-align: center;
     font-family: "Raleway", sans-serif;
-    border: 5px lightgray solid;
-    margin: 1em;
+    display: grid;
+    grid-template-areas: 'bar-area bar-area'
+      'command log';
+    grid-gap: .5em;
   }
 
   #bar {
@@ -233,8 +242,13 @@ export default {
   #log {
     overflow: scroll;
     height: 34em;
-    width: 100%;
     text-align: left;
+    grid-area: log;
+    width: 100%;
+  }
+
+  #command {
+    grid-area: command;
   }
 
   #graph {
@@ -253,5 +267,18 @@ export default {
 
   #first {
     border-left: 1px white solid;
+  }
+
+  .information-area {
+    background: #000428;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(#004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(#004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: 3px lightgray solid;
+    border-top: 10px lightgray solid;
+    padding: 1em;
+  }
+
+  #bar-area {
+    grid-area: bar-area;
   }
 </style>
