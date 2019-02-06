@@ -43,7 +43,6 @@ export default {
     width: 100%;
     background-color: #000;
     opacity: .6;
-    z-index: 10;
     top: 0;
     left: 0;
   }
@@ -60,7 +59,7 @@ export default {
     background: -webkit-linear-gradient(#004e92, #000428); 
     background: linear-gradient(#004e92, #000428);
     border: 1px lavender solid;
-    z-index: 10;
+    z-index: 11;
   }
 
   .modal-body {
@@ -69,8 +68,6 @@ export default {
     margin: 0px;
     display: grid;
     grid-template-areas: "path text";
-    position: relative;
-    z-index: 10;
   }
 
   #left {

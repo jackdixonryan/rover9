@@ -25,5 +25,16 @@ export default {
 </script>
 
 <style>
+/* These are for the modals. DO NOT TOUCH ANYTHING IN THIS FILE TREE THAT HAS Z-INDEX ATTACHED tO IT IN ANY WAY FOR HERE THERE BE MONSTERS. */
+
+.progress, .progress-circle {
+  position: relative;
+  z-index: 0;
+}
+
+.error-modal {
+  position: relative;
+  z-index: 10;
+}
 </style>
 
