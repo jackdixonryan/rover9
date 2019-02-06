@@ -1,11 +1,18 @@
 <template>
   <div id="capsule-menu" v-if="capsules.length > 0">
+    <ErrorModal 
+      v-if="error" 
+      title="Insufficient Funds" 
+      body="You do not have enough money to purchase that item. Complete some missions to earn your funds back!" 
+      @modalClosed="error = false" 
+      class="error-modal animated fadeIn 3s"
+    />
     <div class="capsule-info" v-for="capsule in capsules" :key="capsule.name">
       <div class="text-info">
         <h4>{{capsule.name}}</h4>
         <p style="max-width: 200px; padding: .25em .25em .25em 0em;">{{ capsule.description }}</p>
         <p>$ {{capsule.price}}</p>
-        <button class="purchase">Purchase</button>
+        <button class="purchase" @click="buyCapsule(capsule)">Purchase</button>
       </div>
       <div class="probe-stats">
         <!-- important note here: passing a space into the id will break the render logic for the circle. You need to pass it a -->
@@ -39,15 +46,44 @@
 
 <script>
 import firebase from 'firebase';
-import ProgressCircle from './ProgressCircle'
+import ProgressCircle from './ProgressCircle';
+import ErrorModal from './ErrorModal';
 
 export default {
   components: {
     ProgressCircle,
+    ErrorModal,
   },
   data() {
     return {
       capsules: [],
+      error: false,
+    }
+  },
+  methods: {
+    buyCapsule(capsule) {
+
+      const newBalance = this.$parent.userDetails.funding - capsule.price;
+
+      if (newBalance < 0) {
+        this.error="true";
+      } else {
+
+        firebase.firestore()
+          .collection('users')
+          .doc(this.$store.state.user.uid)
+          .update({
+            capsules: firebase.firestore.FieldValue.arrayUnion(capsule),
+            funding: newBalance
+          })
+          .then(resolved => {
+            console.log('request resolved.');
+            this.$emit('userNeedsUpdate');
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
     }
   },
   mounted() {
@@ -117,5 +153,10 @@ export default {
     border: 1px lightskyblue solid;
     padding: .5em;
   }
+
+  .error-modal {
+    z-index: 20000;
+  }
+
 
 </style>

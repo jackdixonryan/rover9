@@ -8,6 +8,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "animate.css": "^3.7.0",
     "firebase": "^5.8.2",
     "progressbar.js": "^1.0.1",
     "vue": "^2.5.22",

@@ -11,7 +11,7 @@
         <p>Welcome to Mission Control. From this page, you will be able to view your mission stats, ship conditions, and much more. For now, start by purchasing your first probe.</p>
         <p>Probes come at different prices, so take care which ones you buy. Remember, probes can be modified in the future and you'll want to save some of your money to purchase useful upgrades as you explore.</p>
       </div>
-      <Capsules id="capsules-buyer"/>
+      <Capsules id="capsules-buyer" @userNeedsUpdate="updateUser"/>
     </div>
   </div>
 </template>
@@ -70,6 +70,17 @@ export default {
           username: this.username
         })
         .catch(error => console.log(error));
+    },
+    // only fires when the user buys a probe from the store because their balance has to reflect the update.
+    updateUser() {
+      firebase.firestore()
+        .collection('users')
+        .doc(this.user.uid)
+        .get()
+        .then(newDetails => {
+          this.userDetails = newDetails.data();
+        })
+        .catch(error => {console.log(error)});
     }
   }
 }
