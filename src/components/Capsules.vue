@@ -154,9 +154,4 @@ export default {
     padding: .5em;
   }
 
-  .error-modal {
-    z-index: 20000;
-  }
-
-
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div :id="name" :style="{height: `${height}px`, width: `${width}px`}"></div>
+  <div :id="name" :style="{height: `${height}px`, width: `${width}px`}" class="progress-circle"></div>
 </template>
 
 <script>
@@ -33,3 +33,4 @@ export default {
 
 <style scoped>
 </style>
+
