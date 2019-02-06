@@ -1,13 +1,16 @@
 <template>
   <div>
     <router-view /> 
+    <Footer />
   </div>
 </template>
 
 <script>
 import firebase from 'firebase';
+import Footer from './components/Footer'
 
 export default {
+  components: { Footer, },
   name: 'App',
   data () {
     return {
@@ -36,5 +39,35 @@ export default {
   position: relative;
   z-index: 10;
 }
+
+.shade-box {
+  background: #000428;
+  background: -webkit-linear-gradient(#004e92, #000428); 
+  background: linear-gradient(#004e92, #000428);
+  padding: 1em;
+  border: 3px #E6E6FA solid;
+  border-top: 10px #E6E6FA solid;
+  color: white;
+}
+
+  .header-3 {
+    padding: 1em 0 1em 0;
+    border-bottom: 1px lightskyblue solid;
+  }
+
+  .header-4 {
+    padding: 1em 0 .5em 0;
+  }
+
+  .subtitle {
+    margin: 0;
+    color: lightskyblue;
+  }
+
+  .btn {
+    padding: .75em;
+    margin: 1em 0 0 0;;
+    border: 1px lightskyblue solid;
+  }
 </style>
 

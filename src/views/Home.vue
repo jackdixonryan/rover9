@@ -14,6 +14,10 @@
     <!-- Returning players will be given this instead. -->
     <div v-else id="returning-user">
       <Header :userDetails="userDetails" />
+      <user-capsules />
+      <Missions :userDetails="userDetails"/>
+      <rec-mods />
+      <Recs />
     </div>
   </div>
 </template>
@@ -24,10 +28,19 @@ import firebase from "firebase";
 import Capsules from '../components/Capsules';
 import Header from '../components/Header';
 
+import UserCapsules from '../components/UserCapsules';
+import Missions from '../components/Missions';
+import Recs from '../components/Recs';
+import RecMods from '../components/RecMods';
+
 export default {
   components: {
     Capsules,
     Header,
+    UserCapsules,
+    Missions,
+    Recs,
+    RecMods,
   },
   data() {
     return {
@@ -83,6 +96,7 @@ export default {
   #splash {
     background-color: black;
     font-family: 'Raleway', sans-serif; 
+    height: 100vh;
   }
 
   #new-user {
@@ -95,9 +109,13 @@ export default {
 
   #returning-user {
     display: grid;
-    grid-template-areas: "banner banner";
+    grid-template-areas: 
+    "banner banner"
+    "capsules actives" 
+    "mods missions";
     grid-gap: 10px;
     padding: 10px;
+    height: 93vh;
   }
 
   #tutorial-information {
