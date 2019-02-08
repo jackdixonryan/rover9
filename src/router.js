@@ -8,6 +8,7 @@ import Signup from './views/Signup';
 import Home from './views/Home';
 import Mini from './views/Mini';
 import User from './views/User';
+import Test from './views/Test';
 
 Vue.use(Router);
 
@@ -38,6 +39,11 @@ export default new Router({
       path: '/user',
       name: 'User Profile',
       component: User
+    },
+    {
+      path: '/test',
+      name: 'Test',
+      component: Test
     }
   ]
 });
