@@ -7,8 +7,10 @@ const mechanics = {
   mission(capsule, environment) {
     console.log('welcome.')
 
-    // setting two variables to calculate what the probe is capable of.
-    const baseSuccess = this.calculateProbability('successProbability', capsule, environment);
+    // setting two variables to calculate what the probe is capable of. The base failure is the probability that the probe will fail on any time pulse.
+    const baseFailure = this.calculateProbability('failureProbability', capsule, environment);
+
+    // base discovery is the opposite--just a raw chance of discovery. 
     const baseDiscovery = this.calculateProbability('discoveryProbability', capsule, environment);
 
     // again, remember here that the env is going to be an object formatted as such: {
@@ -17,18 +19,19 @@ const mechanics = {
 
     // get the length of the mission--in months, each month translates to 1 minute.
     const missionLength = environment.data.length;
+    console.log(baseFailure);
     
     // this is the probability that the mission will fail in any given month.
-    const failureProbability = (1 - baseSuccess) / missionLength;
 
     let counter = 0;
     let missionFailed = false;
+
     const runMission = () => {
       setTimeout(() => {
         console.log("Mission in month: " + (counter + 1));
         counter++;
         
-        if (Math.random() < failureProbability) {
+        if (Math.random() < baseFailure) {
           console.log('Mission just failed!');
           missionFailed = true;
         }
@@ -41,24 +44,27 @@ const mechanics = {
           if (Math.random() < baseDiscovery) {
             console.log('you discovered something! but the mission failed.');
           } else {
-            console.log('you failed and nothing was uncovered.')
+            console.log('you failed and nothing was uncovered.');
           }
         }
-      }, 1000)
+      }, 1000);
     } 
     runMission();   
   },
   // the engine needs to be able to read the contents of the capsules's base plus or minus it's various modifications. It will pay to be cautious with this method as it applies to both discovery and success.
   calculateProbability(probabilityType, capsule, environment) {
-    // call it .4, the basic chance built in to the capsule. 
+    // call it .4, the basic chance of failure built into the capsule. 
     let baseProbability = capsule[probabilityType];
     
     capsule.modifications.map(modification => {
-      // for now, lets assume that every mod gives you a 10% bump in either direction.
+      // for now, lets assume that every mod gives you a 3% bump in either direction.
+
+      // if the mod is beneficial, it will reduce the chance of failure by 3%.
       if (modification.boosts.includes(environment.id)) {
-        baseProbability += .1
+        baseProbability -= .03
+        // if the mod is detrimental, it will increase the chance of failure by three percent. 
       } else if (modification.hinders.includes(environment.id)) {
-        baseProbability -= .1;
+        baseProbability -= .03;
       }
 
       // max/mins the probability factors to prevent bleeding over.

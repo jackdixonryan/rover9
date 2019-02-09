@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="page-main">
     <router-view /> 
     <Footer />
   </div>
@@ -48,6 +48,8 @@ export default {
   border: 3px #E6E6FA solid;
   border-top: 10px #E6E6FA solid;
   color: white;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 1px;
 }
 
   .header-3 {
@@ -68,6 +70,13 @@ export default {
     padding: .75em;
     margin: 1em 0 0 0;;
     border: 1px lightskyblue solid;
+  }
+
+  #page-main {
+    background-color: black;
+    padding: .5em;
+    height: 100vh;
+    width: 100%;
   }
 </style>
 
