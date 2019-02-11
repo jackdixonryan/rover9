@@ -1,3 +1,4 @@
+
 <template>
   <div id="main" v-if="userData">
     <ErrorModal 
@@ -8,15 +9,17 @@
       v-if="error" 
     />
 
-    <div class="shade-box" id="capsules">
-      <h3 class="header-3">Capsules</h3>
-      <div v-for="capsule in userData.capsules" :key="capsule.name" class="capsule">
-        <div>
-          <h4 class="header-4">{{capsule.name}}</h4>
-          <p class="subtitle">Discovery: {{ capsule.discoveryProbability * 100}}%</p>
-          <p class="subtitle">Success: {{ capsule.successProbability * 100 }}%</p>
-          <button class="btn">Modify</button>
-          <button class="btn" style="margin-left: .75em;">Launch</button>
+    <div class="outer-box">
+      <div class="shade-box" id="capsules">
+        <h3 class="header-3">Capsules</h3>
+        <div v-for="capsule in userData.capsules" :key="capsule.name" class="capsule">
+          <div>
+            <h4 class="header-4">{{capsule.name}}</h4>
+            <p class="subtitle">Discovery: {{ capsule.discoveryProbability * 100}}%</p>
+            <p class="subtitle">Success: {{ capsule.successProbability * 100 }}%</p>
+            <button class="btn">Modify</button>
+            <button class="btn" style="margin-left: .75em;">Launch</button>
+          </div>
         </div>
       </div>
     </div>
@@ -26,9 +29,7 @@
 
 <script>
 import firebase from 'firebase';
-
 import ErrorModal from './ErrorModal.vue';
-
 export default {
   components: {
     ErrorModal,

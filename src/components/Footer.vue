@@ -50,7 +50,7 @@ export default {
     border-top: 1px #E6E6FA solid;
     color: white;
     position: absolute;
-    top: 92.5vh;
+    top: 94vh;
   }
 
   .link-area {

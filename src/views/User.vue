@@ -1,7 +1,6 @@
 <template>
   <div id="background">
-    <div id="main">
-      <div id="probe-stats">
+      <!-- <div id="probe-stats">
         <div id="banner" style="width: 100%; border-bottom: 1px #87CEFA solid;">
           <p style="color: #87CEFA; font-size: 12px; margin: 5px;">02/05/2019</p>
         </div>
@@ -23,18 +22,19 @@
             <p class="bar-label">Success Chance</p>
           </div>
         </div>
-      </div>
-    </div>
+      </div> -->
+    <user-capsules :user="user"/>
   </div>
 </template>
 
 <script>
 import firebase from 'firebase';
-import ProgressCircle from '../components/ProgressCircle';
+// import ProgressCircle from '../components/ProgressCircle';
+import UserCapsules from '../components/UserCapsules';
 
 export default {
   components: {
-    ProgressCircle
+    UserCapsules,
   },
   computed: {
     user() {
@@ -57,8 +57,8 @@ export default {
   #main {
     background-color: #000428;
     padding: 1em;
-    border: 3px gray solid;
-    border-top: 10px gray solid;
+    border: 3px #E6E6FA solid;
+    border-top: 10px #E6E6FA solid; 
   }
 
   #probe-stats {

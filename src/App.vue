@@ -45,12 +45,19 @@ export default {
   background: -webkit-linear-gradient(#004e92, #000428); 
   background: linear-gradient(#004e92, #000428);
   padding: 1em;
-  border: 3px #E6E6FA solid;
-  border-top: 10px #E6E6FA solid;
+  /* border: 3px #E6E6FA solid;
+  border-top: 10px #E6E6FA solid; */
   color: white;
   font-family: 'Raleway', sans-serif;
   letter-spacing: 1px;
 }
+
+  .outer-box {
+    background-color: #000428;
+    padding: 1em;
+    border: 1px lavender solid;
+    border-top: 5px lavender solid;
+  }
 
   .header-3 {
     padding: 1em 0 1em 0;
@@ -74,8 +81,6 @@ export default {
 
   #page-main {
     background-color: black;
-    padding: .5em;
-    height: 100vh;
     width: 100%;
   }
 </style>

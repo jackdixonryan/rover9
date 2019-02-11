@@ -26,7 +26,9 @@ export default {
   },
   watch: {
     progress(val) {
-      this.progressCircle.set(val);
+      this.progressCircle.animate(val, {
+        duration: 800
+      });
       this.progressCircle.setText(`${Math.floor(val * 100)}%`);
     }
   },
