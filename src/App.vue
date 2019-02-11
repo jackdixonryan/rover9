@@ -28,29 +28,29 @@ export default {
 </script>
 
 <style>
-/* These are for the modals. DO NOT TOUCH ANYTHING IN THIS FILE TREE THAT HAS Z-INDEX ATTACHED tO IT IN ANY WAY FOR HERE THERE BE MONSTERS. */
+  /* These are for the modals. DO NOT TOUCH ANYTHING IN THIS FILE TREE THAT HAS Z-INDEX ATTACHED tO IT IN ANY WAY FOR HERE THERE BE MONSTERS. */
 
-.progress, .progress-circle {
-  position: relative;
-  z-index: 0;
-}
+  .progress, .progress-circle {
+    position: relative;
+    z-index: 0;
+  }
 
-.error-modal {
-  position: relative;
-  z-index: 10;
-}
+  .error-modal {
+    position: relative;
+    z-index: 10;
+  }
 
-.shade-box {
-  background: #000428;
-  background: -webkit-linear-gradient(#004e92, #000428); 
-  background: linear-gradient(#004e92, #000428);
-  padding: 1em;
-  /* border: 3px #E6E6FA solid;
-  border-top: 10px #E6E6FA solid; */
-  color: white;
-  font-family: 'Raleway', sans-serif;
-  letter-spacing: 1px;
-}
+  .shade-box {
+    background: #000428;
+    background: -webkit-linear-gradient(#004e92, #000428); 
+    background: linear-gradient(#004e92, #000428);
+    padding: 1em;
+    /* border: 3px #E6E6FA solid;
+    border-top: 10px #E6E6FA solid; */
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 1px;
+  }
 
   .outer-box {
     background-color: #000428;

@@ -6,6 +6,9 @@ Space Simulation Game for PWA development.
 
 I want to have a little fun and see if I can actually build a reasonably good click-and-wait game. Basically, for now, the idea is pretty simple: You are a the director of NASA and it's your responsibility to explore the vast reaches of space! for the first version, it's going to be pretty simple: 
 
+![login page](https://raw.githubusercontent.com/jackdixonryan/rover9/master/src/assets/loginpage.png)
+###### A space-age feel
+
 The environment has 3 randomly selected unknowns--eg, intense solar radiation, asteroids, massive distance, and only by launching probes with the appropriate additions can you figure out what they are. So, say, a probe with solar reflectors might withstand the solar radiation, but get pounded with asteroids. 
 
 As the game is developed, users will be able to research more, run manned missions, land in places, but for now let's keep it simple. 
