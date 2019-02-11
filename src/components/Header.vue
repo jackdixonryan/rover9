@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import firebase from 'firebase';
+
 export default {
   props: [ "userDetails" ],
   data() {
@@ -19,13 +21,14 @@ export default {
   },
   methods: {
     updateUsername() { 
+      const uid = this.$store.state.user.uid;
       // set local
       this.$set(this.userDetails, 'username', this.username);
       
       // set data.
       firebase.firestore()
         .collection('users')
-        .doc(this.user.uid)
+        .doc(uid)
         .update({
           username: this.username
         })

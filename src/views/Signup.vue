@@ -47,7 +47,10 @@ export default {
             .set({
               email: this.email,
               username: null,
-              inventory: {},
+              inventory: [],
+              capsules: [],
+              activeMissions: [],
+              funding: 300,
             })
             .then(userDetailsAdded => {
               window.location.replace('/home');

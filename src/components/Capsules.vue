@@ -13,6 +13,7 @@
         <p style="max-width: 200px; padding: .25em .25em .25em 0em;">{{ capsule.description }}</p>
         <p>$ {{capsule.price}}</p>
         <button class="purchase" @click="buyCapsule(capsule)">Purchase</button>
+        <button class="purchase" style="margin-left: .5em;">%</button>
       </div>
       <div class="probe-stats">
         <!-- important note here: passing a space into the id will break the render logic for the circle. You need to pass it a -->
@@ -89,6 +90,7 @@ export default {
   mounted() {
     firebase.firestore()
       .collection('probes')
+      .orderBy("price", "asc")
       .get()
       .then(probesList => {
         probesList.forEach(probe => {

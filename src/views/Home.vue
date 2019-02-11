@@ -96,7 +96,7 @@ export default {
   #splash {
     background-color: black;
     font-family: 'Raleway', sans-serif; 
-    height: 100vh;
+    height: 100%;
   }
 
   #new-user {
@@ -115,7 +115,7 @@ export default {
     "mods missions";
     grid-gap: 10px;
     padding: 10px;
-    height: 93vh;
+    height: 100%;
   }
 
   #tutorial-information {
