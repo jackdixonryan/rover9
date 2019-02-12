@@ -7,6 +7,24 @@
       <div id="tutorial-information">
         <p>Welcome to Mission Control. From this page, you will be able to view your mission stats, ship conditions, and much more. For now, start by purchasing your first probe.</p>
         <p>Probes come at different prices, so take care which ones you buy. Remember, probes can be modified in the future and you'll want to save some of your money to purchase useful upgrades as you explore.</p>
+        <p class="subtitle">Important info</p>
+        <h3 class="header-3">Before you buy:</h3>
+        <ul>
+          <li>
+            <h4 class="header-4">
+              Discovery Probability
+            </h4>
+            <p>Discovery probability is calculated one time on either mission success or mission failure, so the rate is considered static.</p>
+          </li>
+          <li>
+            <h4 class="header-4">
+              Success Probability
+            </h4>
+            <p style="line-height: 1.5;">
+              Success probability works differently. It is the capsule's likelihood of surviving <strong>one month</strong> of the total mission. This means that shuttles have a much lower chance of surviving long missions than they do of short ones. We recommend you try the <strong id="inset-button">%</strong> buttons to open the calculator and view each capsules aptitude for different missions lengths.
+            </p>
+          </li>
+        </ul>
       </div>
       <Capsules id="capsules-buyer" @userNeedsUpdate="updateUser"/>
     </div>
@@ -138,6 +156,17 @@ export default {
     border: 3px #E6E6FA	solid;
     border-top: 10px #E6E6FA solid;
     color: white;
+  }
+
+  strong {
+    color: red;
+  }
+
+  #inset-button {
+    color: white;
+    border: 1px lightskyblue solid; 
+    padding: .2em;
+    margin: .1em;
   }
 
 </style>

@@ -83,5 +83,31 @@ export default {
     background-color: black;
     width: 100%;
   }
+
+  .modal {
+    width: 70%;
+    position: fixed;
+    top: 10em;
+    z-index: 30;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 1em;
+    border: 1px lavender solid;
+    border-top: 5px lavender solid;
+    background-color: #000428;
+  }
+
+  .gray-out {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: .6;
+    top: 0;
+    left: 0;
+    z-index: 30;
+  }
 </style>
 
