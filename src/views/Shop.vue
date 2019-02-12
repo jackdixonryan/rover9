@@ -1,6 +1,7 @@
 // Items Shop
 <template>
   <div id="shop">
+
     <div id="main-navigation">
       <button class="main-button" id="ships">
         Ships
@@ -12,6 +13,7 @@
         Discovery Mods
       </button>
     </div>
+
     <div>
       <div class="sub-menu animated fadeIn" v-show="ships">
         <button class="sub-button" @click="finalSelection=0">
@@ -23,17 +25,25 @@
         <button class="sub-button" @click="finalSelection=2">
           Landers & Advanced Landers
         </button>
-        <button class="sub-button" @click="finalSelection=3">
+        <button class="sub-button" @click="finalSelection=4">
           Explorers
         </button>
-        <button class="sub-button" @click="finalSelection=4">
+        <button class="sub-button" @click="finalSelection=5">
           Pioneers
         </button>
-        <button class="sub-button" @click="finalSelection=5">
+        <button class="sub-button" @click="finalSelection=6">
           Sojourners
         </button>
       </div>
     </div>
+
+    <div id="display-ships" v-if="displayShips">
+      <div class="ship-result" v-for="ship in displayShips" :key="ship.price">
+        <h3 class="ship-name">{{ ship.name }}</h3>
+        <p class="ship-description">{{ ship.description }}</p>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -43,12 +53,25 @@ import firebase from 'firebase';
 export default {
   data() {
     return {
-      probes: [],
+      allShips: [],
       modifications: [],
       ships: false,
       success: false,
       discovery: false,
       finalSelection: null,
+      displayShips: null
+    }
+  },
+  watch: {
+    finalSelection(val) {
+      this.displayShips = this.allShips.filter(ship => ship.type === val);
+      if (val === 2) {
+        this.allShips.map(ship => {
+          if (ship.type === 3) {
+            this.displayShips.push(ship);
+          }
+        })
+      }
     }
   },
   methods: {
@@ -85,7 +108,7 @@ export default {
       .get()
       .then(probes => {
         probes.forEach(probe => {
-          this.probes.push(probe.data());
+          this.allShips.push(probe.data());
         });
       });
   },
@@ -123,6 +146,7 @@ export default {
     border: 2px $aqua solid;
     border-top: 0px;
     width: 33%;
+    position: fixed;
   }
 
   .sub-button {
@@ -166,6 +190,18 @@ export default {
         transition: transform 0s .2s $easeOutBack, opacity 0s .2s;
       }
     }
+  }
+
+  .ship-result {
+    width: 100%;
+  }
+
+  .ship-name {
+    color: white;
+  }
+
+  .ship-description {
+    color: white;
   }
 
 </style>
