@@ -9,12 +9,18 @@ import Home from './views/Home';
 import Mini from './views/Mini';
 import User from './views/User';
 import Test from './views/Test';
+import Shop from './views/Shop';
 
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: Home
+    },
     {
       path: '/signup',
       name: 'sign up',
@@ -44,6 +50,11 @@ export default new Router({
       path: '/test',
       name: 'Test',
       component: Test
-    }
+    },
+    {
+      path: '/shop',
+      name: 'Shop',
+      component: Shop,
+    },
   ]
 });
