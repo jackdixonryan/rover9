@@ -31,11 +31,11 @@
 
     <!-- Returning players will be given this instead. -->
     <div v-else id="returning-user">
-      <Header :userDetails="userDetails" />
-      <user-capsules />
-      <Missions :userDetails="userDetails"/>
-      <rec-mods />
-      <Recs />
+      <the-header :userDetails="userDetails" />
+      <home-capsules />
+      <home-active-missions :userDetails="userDetails"/>
+      <home-recommended-modules />
+      <home-recommended-missions />
     </div>
   </div>
 </template>
@@ -44,21 +44,21 @@
 import firebase from "firebase";
 
 import Capsules from '../components/Capsules';
-import Header from '../components/Header';
+import TheHeader from '../components/TheHeader';
 
-import UserCapsules from '../components/UserCapsules';
-import Missions from '../components/Missions';
-import Recs from '../components/Recs';
-import RecMods from '../components/RecMods';
+import HomeCapsules from '../components/HomeCapsules';
+import HomeActiveMissions from '../components/HomeActiveMissions';
+import HomeRecommendedMissions from '../components/HomeRecommendedMissions';
+import HomeRecommendedModules from '../components/HomeRecommendedModules';
 
 export default {
   components: {
     Capsules,
-    Header,
-    UserCapsules,
-    Missions,
-    Recs,
-    RecMods,
+    TheHeader,
+    HomeCapsules,
+    HomeActiveMissions,
+    HomeRecommendedMissions,
+    HomeRecommendedModules,
   },
   data() {
     return {

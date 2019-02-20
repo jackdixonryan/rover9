@@ -12,7 +12,9 @@
 
 <script>
 export default {
-  props: [ 'userDetails' ],
+  props: {
+    userDetails: Object,
+  },
   computed: {
     hasActives() {
       if (this.userDetails.activeMissions.length > 0) return true;

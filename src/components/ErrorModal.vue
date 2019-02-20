@@ -4,7 +4,7 @@
     <div class="modal">
       <div class="modal-body">
         <div id="left">
-          <error-animation height="100" width="100" name="error"/> 
+          <error-modal-animation height="100" width="100" name="error"/> 
         </div>
         <div id="right">
           <h3 style="color: lightskyblue">
@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import ErrorAnimation from './ErrorAnimation.vue';
+import ErrorModalAnimation from './ErrorModalAnimation.vue';
 
 export default {
-  components: { ErrorAnimation },
-  props: [
-    'title',
-    'body',
-  ],
+  components: { ErrorModalAnimation },
+  props: {
+    title: String,
+    body: String,
+  },
   data() {
     return {
       visible: true,
