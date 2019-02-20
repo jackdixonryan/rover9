@@ -23,18 +23,18 @@
           </div>
         </div>
       </div> -->
-    <user-capsules :user="user"/>
+    <home-capsules :user="user"/>
   </div>
 </template>
 
 <script>
 import firebase from 'firebase';
 // import ProgressCircle from '../components/ProgressCircle';
-import UserCapsules from '../components/UserCapsules';
+import HomeCapsules from '../components/HomeCapsules';
 
 export default {
   components: {
-    UserCapsules,
+    HomeCapsules,
   },
   computed: {
     user() {

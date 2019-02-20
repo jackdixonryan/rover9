@@ -38,9 +38,33 @@
     </div>
 
     <div id="display-ships" v-if="displayShips">
-      <div class="ship-result" v-for="ship in displayShips" :key="ship.price">
-        <h3 class="ship-name">{{ ship.name }}</h3>
-        <p class="ship-description">{{ ship.description }}</p>
+      <div class="display-ship-result" v-for="ship in displayShips" :key="ship.price">
+        <h3 class="display-ship-name">{{ ship.name }}</h3>
+        <div class="display-ship-flexbox">
+          <div class="progress-container">
+            <progress-circle 
+              trailColor="#00d7d4"
+              color="#ffffff"
+              width="1em"
+              height="1em"
+              :name="ship.name.split(' ').join('')"
+              :progress="ship.successProbability"
+              class="display-ship-success-probability"
+            />
+          </div>
+          <p class="display-ship-description">{{ ship.description }}</p>
+          <div class="progress-container">
+            <progress-circle 
+              trailColor="#00d7d4"
+              color="#ffffff"
+              width="1em"
+              height="1em"
+              :name="`${ship.name.split(' ').join('')}-discovery`"
+              :progress="ship.discoveryProbability"
+              class="display-ship-success-probability"
+            />
+          </div>
+        </div>
       </div>
     </div>
 
@@ -50,7 +74,10 @@
 <script>
 import firebase from 'firebase';
 
+import ProgressCircle from '../components/ProgressCircle.vue';
+
 export default {
+  components: { ProgressCircle },
   data() {
     return {
       allShips: [],
@@ -63,6 +90,10 @@ export default {
     }
   },
   watch: {
+    // watches the all ships value to generate data on page bootup.
+    allShips(val) {
+      this.displayShips = this.allShips.filter(ship => ship.type === 1);
+    },
     finalSelection(val) {
       this.displayShips = this.allShips.filter(ship => ship.type === val);
       if (val === 2) {
@@ -105,6 +136,7 @@ export default {
   beforeMount() {
     firebase.firestore()
       .collection('probes')
+      .orderBy('successProbability')
       .get()
       .then(probes => {
         probes.forEach(probe => {
@@ -126,7 +158,7 @@ export default {
   #shop {
     padding: 1em;
     font-family: 'Rajdhani', sans-serif;
-    height: 100vh;
+    height: 100%;
   }
 
   #main-navigation {
@@ -147,8 +179,10 @@ export default {
     border-top: 0px;
     width: 33%;
     position: fixed;
+    z-index: 20;
   }
 
+  // dropbown menu button along with the styling for that little underline effect.
   .sub-button {
     outline: none;
     width: 50%;
@@ -192,16 +226,41 @@ export default {
     }
   }
 
-  .ship-result {
+  #display-ships {
+    margin-bottom: 4em;
+  }
+
+  /* governs list styles */
+  .display-ship-result {
     width: 100%;
+    margin-top: 4em;
   }
 
-  .ship-name {
-    color: white;
+  .display-ship-flexbox {
+    display: flex;
   }
 
-  .ship-description {
+  .display-ship-name {
     color: white;
+    font-size: 3em;
+    text-align: center;
+  }
+
+  .display-ship-description {
+    color: white;
+    font-size: 1.5em;
+    flex: 1;
+    text-align: center;
+  }
+
+  .progress-container {
+    flex: 1;
+  }
+
+  .display-ship-success-probability {
+    height: 10em;
+    width: 10em;
+    margin: 0 auto;
   }
 
 </style>

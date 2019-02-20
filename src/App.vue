@@ -7,10 +7,10 @@
 
 <script>
 import firebase from 'firebase';
-import Footer from './components/Footer'
+import TheFooter from './components/TheFooter'
 
 export default {
-  components: { Footer, },
+  components: { TheFooter, },
   name: 'App',
   data () {
     return {
