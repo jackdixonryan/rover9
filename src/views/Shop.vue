@@ -39,30 +39,32 @@
 
     <div id="display-ships" v-if="displayShips">
       <div class="display-ship-result" v-for="ship in displayShips" :key="ship.price">
-        <h3 class="display-ship-name">{{ ship.name }}</h3>
-        <div class="display-ship-flexbox">
-          <div class="progress-container">
-            <progress-circle 
-              trailColor="#00d7d4"
-              color="#ffffff"
-              width="1em"
-              height="1em"
-              :name="ship.name.split(' ').join('')"
-              :progress="ship.successProbability"
-              class="display-ship-success-probability"
-            />
-          </div>
-          <p class="display-ship-description">{{ ship.description }}</p>
-          <div class="progress-container">
-            <progress-circle 
-              trailColor="#00d7d4"
-              color="#ffffff"
-              width="1em"
-              height="1em"
-              :name="`${ship.name.split(' ').join('')}-discovery`"
-              :progress="ship.discoveryProbability"
-              class="display-ship-success-probability"
-            />
+        <div class="dont-even-sweat-it-bruh">
+          <h3 class="display-ship-name">{{ ship.name }}</h3>
+          <div class="display-ship-flexbox">
+            <div class="progress-container">
+              <progress-circle 
+                trailColor="#00d7d4"
+                color="#ffffff"
+                width="1em"
+                height="1em"
+                :name="ship.name.split(' ').join('')"
+                :progress="ship.successProbability"
+                class="display-ship-success-probability"
+              />
+            </div>
+            <p class="display-ship-description">{{ ship.description }}</p>
+            <div class="progress-container">
+              <progress-circle 
+                trailColor="#00d7d4"
+                color="#ffffff"
+                width="1em"
+                height="1em"
+                :name="`${ship.name.split(' ').join('')}-discovery`"
+                :progress="ship.discoveryProbability"
+                class="display-ship-success-probability"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -234,6 +236,38 @@ export default {
   .display-ship-result {
     width: 100%;
     margin-top: 4em;
+    /* position: relative;
+    &:before,
+    &:after,
+    & > :first-child:before,
+    & > :first-child:after {
+      position: absolue;
+      content: ' ';
+      border-color: $aqua;
+      border-style: solid;
+      height: 80px;
+      width: 80px;
+    }
+    &:before {
+      top: 0;
+      left: 0;
+      border-width: 3px 0 0 3px;
+    }
+    &:after {
+      top: 0; 
+      right: 0;
+      border-width: 3px 3px 0 0;
+    }
+    & > :first-child:before {
+      bottom: 0;
+      right: 0;
+      border-width: 0 3px 3px 0;
+    } 
+    & > :first-child:after {
+      bottom: 0;
+      left: 0;
+      border-width: 0 0 3px 3px;
+    } */
   }
 
   .display-ship-flexbox {
